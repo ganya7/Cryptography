@@ -18,12 +18,9 @@ else:
 	b = int(input("Enter Bob private key:"))
 	g = []
 	h = []
-	flag = True
 	for i in range(1,p):
 		for j in range(1,p):
-			if(pow(i, j, p) == 1):
-			  flag = False
-			h.append((i**j) % p) 
+			h.append(pow(i, j, p)) 
 		if h.count(1) <= 1:
 			g.append(i)
 		h=[]
@@ -33,9 +30,9 @@ else:
 	publicKey_Alice = (primitive_root**a) % p
 	publicKey_Bob = (primitive_root**b) % p
 	encryptionKey = (primitive_root**(a*b)) % p
-	print("Alice: Public key: ",a," Private key: ",publicKey_Alice,end=" ")
+	print("Alice: Private key: ",a," Public key: ",publicKey_Alice,end=" ")
 	print("(",a,", ",publicKey_Alice,")")
-	print("Bob: Public key: ",b," Private key: ",publicKey_Bob,end=" ")
+	print("Bob: Private key: ",b," Public key: ",publicKey_Bob,end=" ")
 	print("(",b,", ",publicKey_Bob,")")
 	print("Encryption key: ",encryptionKey)
 	cAlice = ((primitive_root**a)**b) % p
